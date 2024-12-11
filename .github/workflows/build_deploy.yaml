@@ -29,6 +29,13 @@ jobs:
           echo "REPO=${FULLNAME,,}" >> $GITHUB_OUTPUT
           echo "REPO=${FULLNAME,,}"
 
+      - name: Log in to the Container registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Build and push Docker image
         id: build
         uses: docker/build-push-action@v6
