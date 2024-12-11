@@ -36,4 +36,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ steps.outputs.repo.outputs.REPO }}:latest
+          tags: ${{ steps.repo.outputs.REPO }}:latest
