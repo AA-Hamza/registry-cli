@@ -1,19 +1,16 @@
 name: Build Dockerfile and push into ghcr
 
-
 on:
   workflow_dispatch:
   push:
     branches:
       - master
 
-
 jobs:
   build:
     name: Build Dockerfile and push into ghcr
     runs-on: ubuntu-latest
     timeout-minutes: 10
-
 
     permissions:
       packages: write
@@ -26,9 +23,11 @@ jobs:
 
       - name: downcase REPO
         id: repo
+        shell: bash
         run: |
-          FULLNAME=ghcr.io/${{ github.repository }}
+          export FULLNAME="ghcr.io/${{ github.repository }}"
           echo "REPO=${FULLNAME,,}" >> ${GITHUB_OUTPUT}
+          echo "REPO=${FULLNAME,,}"
 
       - name: Build and push Docker image
         id: build
