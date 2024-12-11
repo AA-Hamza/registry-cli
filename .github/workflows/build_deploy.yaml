@@ -26,7 +26,7 @@ jobs:
         shell: bash
         run: |
           export FULLNAME="ghcr.io/${{ github.repository }}"
-          echo "REPO=${FULLNAME,,}" >> ${GITHUB_OUTPUT}
+          echo "REPO=${FULLNAME,,}" >> $GITHUB_OUTPUT
           echo "REPO=${FULLNAME,,}"
 
       - name: Build and push Docker image
@@ -36,4 +36,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ${{ steps.outputs.repo.REPO }}:latest
+          tags: ${{ steps.outputs.repo.outputs.REPO }}:latest
