@@ -696,7 +696,7 @@ def get_newer_tags(registry, image_name, hours, tags_list):
     return result
 
 
-def get_datetime_tags(registry, image_name, tags_list, plain):
+def get_datetime_tags(registry, image_name, tags_list, plain=False):
     def newer(tag):
         image_config = registry.get_tag_config(image_name, tag)
         if image_config == []:
