@@ -187,7 +187,7 @@ class Registry:
 
     # this is required for proper digest processing
     HEADERS = {"Accept":
-               "application/vnd.docker.distribution.manifest.v2+json"}
+               "application/vnd.oci.image.index.v1+json"}
 
     def __init__(self):
         self.username = None
