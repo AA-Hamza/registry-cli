@@ -24,6 +24,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: downcase REPO
+        id: repo
+        run: |
+          FULLNAME=ghcr.io/${{ github.repository }}
+          echo "REPO=${FULLNAME,,}" >> ${GITHUB_OUTPUT}
 
       - name: Build and push Docker image
         id: build
@@ -32,4 +37,4 @@ jobs:
           context: .
           file: Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ${{ steps.outputs.repo.REPO }}:latest
